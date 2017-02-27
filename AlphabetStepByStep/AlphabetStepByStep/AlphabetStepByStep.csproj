@@ -58,6 +58,7 @@
     <Compile Include="View\ContentPage.xaml.cs">
       <DependentUpon>ContentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ValueConverter\CardColor.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\CategoryPage.xaml">

@@ -2,13 +2,21 @@
 				 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 				 x:Class="AlphabetStepByStep.View.Content"
                  xmlns:forms="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+                 xmlns:local="clr-namespace:AlphabetStepByStep.View.ValueConverter"
                  Title="Content Slide">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:CardColor x:Key="CardColorConverter" />  
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <StackLayout>
         <ActivityIndicator IsRunning="{Binding IsBusy}"  IsVisible="{Binding IsBusy}"/>
         <forms:CarouselView x:Name="ContentList" ItemsSource="{Binding ContentList}">
             <forms:CarouselView.ItemTemplate >
                 <DataTemplate>
-                    <AbsoluteLayout BackgroundColor="Blue" Padding="10">
+                    <AbsoluteLayout BackgroundColor="{Binding Position,Converter={StaticResource CardColorConverter}}" Padding="10">
                         <Label  TextColor="White" Text="{Binding Value}"       AbsoluteLayout.LayoutBounds="0,0,1,.5"  AbsoluteLayout.LayoutFlags="All"  LineBreakMode="WordWrap" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  FontSize="Large" />
                         <Label  TextColor="White" Text="{Binding Description}" AbsoluteLayout.LayoutBounds=".5,1,1,.5" AbsoluteLayout.LayoutFlags="All"  LineBreakMode="WordWrap" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  FontSize="Small"/>
                     </AbsoluteLayout>

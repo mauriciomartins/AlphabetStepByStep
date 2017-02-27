@@ -9,10 +9,16 @@ namespace AlphabetStepByStep.model
 {
     class Content : ObservableBaseObject
     {
+        private int position;
         private string value;
         private string valueSound;
         private string description;
         private string descriptionSound;
+        public int Position
+        {
+            get { return this.position; }
+            set { this.position = (int) value; OnPropertyChanged(); }
+        }
         public string Value {
             get { return this.value; }
             set { this.value = value; OnPropertyChanged(); }
