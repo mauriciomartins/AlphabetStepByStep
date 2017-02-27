@@ -38,7 +38,7 @@ namespace AlphabetStepByStep.model
             {
                 IsBusy = true;
 
-                //await Task.Delay(3000);
+                await Task.Delay(3000);
                 var loadDirectory = CategoryDirectoryService.LoadCategoryDirectory();
 
                 foreach (var category in loadDirectory.CategoryList)

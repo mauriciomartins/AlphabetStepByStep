@@ -2,9 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlphabetStepByStep.View.CategoryDetail">
-     <StackLayout>
-        <Entry Text="{Binding Value}"/>
-        <Label Text="Description"/>
-        <Entry Text="{Binding Description}"/>
-    </StackLayout>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding LoadCategoryDirectoryCommand}"/>
+        <ToolbarItem Text="Save1" Command="{Binding LoadCategoryDirectoryCommand}"/>
+        <ToolbarItem Text="Save2" Command="{Binding LoadCategoryDirectoryCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Text="{Binding Value}"/>
+            <Label Text="Description"/>
+            <Entry Text="{Binding Description}"/>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

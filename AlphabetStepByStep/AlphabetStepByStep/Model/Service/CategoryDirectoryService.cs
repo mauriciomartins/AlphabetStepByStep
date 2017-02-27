@@ -12,7 +12,7 @@ namespace AlphabetStepByStep.Model.Service
     {
         public static  CategoryDirectory LoadCategoryDirectory()
         {
-            string[] categories = {"Vowel","Consonant","Alphabet" };
+            string[] categories = {"Vowel","Consonant","Alphabet", "Vowel", "Consonant", "Alphabet", "Vowel", "Consonant", "Alphabet", "Vowel", "Consonant", "Alphabet", "Vowel", "Consonant", "Alphabet", "Vowel", "Consonant", "Alphabet", "Vowel", "Consonant", "Alphabet", "Vowel", "Consonant", "Alphabet", "Vowel", "Consonant", "Alphabet", "Vowel", "Consonant", "Alphabet", "Vowel", "Consonant", "Alphabet", "Vowel", "Consonant", "Alphabet", "Vowel", "Consonant", "Alphabet", "Vowel", "Consonant", "Alphabet", "Vowel", "Consonant", "Alphabet", "Vowel", "Consonant", "Alphabet" };
 
             CategoryDirectory categoryDirectory = new CategoryDirectory();
             ObservableCollection<Category> categoryList = new ObservableCollection<Category>();
