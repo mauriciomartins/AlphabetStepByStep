@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AlphabetStepByStep"
+             x:Class="AlphabetStepByStep.MainPage">
+
+    <StackLayout>
+        <Button  Text="Refresh" Command="{Binding LoadCategoryDirectoryCommand}" />
+        <ListView x:Name="CategoryList" ItemsSource="{Binding CategoryList}">
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <ImageCell Text="{Binding Value}" Detail="{Binding Description}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>

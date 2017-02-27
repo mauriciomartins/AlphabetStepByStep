@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AlphabetStepByStep.model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace AlphabetStepByStep
         public MainPage()
         {
             InitializeComponent();
+            this.BindingContext = new CategoryDirectoryVM();
         }
     }
 }

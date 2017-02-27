@@ -1,0 +1,38 @@
+﻿using AlphabetStepByStep.Model.Entity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AlphabetStepByStep.model
+{
+    class User : ObservableBaseObject
+    {
+        private string name;
+        private string email;
+        private string password;
+        private string birthDate;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; OnPropertyChanged(); }
+        }
+        public string Email
+        {
+            get { return email; }
+            set { email = value; OnPropertyChanged(); }
+        }
+        public string Password
+        {
+            get { return password; }
+            set { password = value; OnPropertyChanged(); }
+        }
+        public string BirthDate
+        {
+            get { return birthDate; }
+            set { birthDate = value; OnPropertyChanged(); }
+        }
+    }
+}
