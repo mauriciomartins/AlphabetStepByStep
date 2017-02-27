@@ -13,7 +13,8 @@ namespace AlphabetStepByStep
         {
             InitializeComponent();
 
-            MainPage = new AlphabetStepByStep.MainPage();
+            MainPage = new NavigationPage(new AlphabetStepByStep.MainPage());
+
         }
 
         protected override void OnStart()

@@ -29,16 +29,16 @@ namespace AlphabetStepByStep.model
         {
             this.CategoryList = new ObservableCollection<Category>();
             this.IsBusy = false;
-            this.LoadCategoryDirectoryCommand = new Command((obj)=> LoadDirectory());
+            this.LoadCategoryDirectoryCommand = new Command(()=> LoadDirectory(),()=>!this.IsBusy);
         }
 
         private async void LoadDirectory()
         {
             if (!IsBusy)
             {
-                IsBusy = false;
+                IsBusy = true;
 
-             //   await Task.Delay(3000);
+                //await Task.Delay(3000);
                 var loadDirectory = CategoryDirectoryService.LoadCategoryDirectory();
 
                 foreach (var category in loadDirectory.CategoryList)
@@ -46,7 +46,7 @@ namespace AlphabetStepByStep.model
                     this.CategoryList.Add(category);
                 }
 
-                IsBusy = true;
+                IsBusy = false;
             }
         }
     }

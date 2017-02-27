@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlphabetStepByStep.model
 {
-    class Category: ObservableBaseObject
+    public class Category: ObservableBaseObject
     {
         private string value;
         private string description;

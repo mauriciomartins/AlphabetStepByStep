@@ -1,0 +1,22 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+				 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+				 x:Class="AlphabetStepByStep.View.Content"
+                 xmlns:forms="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+                 Title="Content Slide">
+    <StackLayout>
+        <Button  Text="Refresh" Command="{Binding LoadContentDirectoryCommand}" />
+        <ActivityIndicator IsRunning="{Binding IsBusy}"  IsVisible="{Binding IsBusy}"/>
+        <forms:CarouselView x:Name="ContentList" ItemsSource="{Binding ContentList}">
+            <forms:CarouselView.ItemTemplate >
+                <DataTemplate>
+                    <AbsoluteLayout>
+                        <Label BackgroundColor="Blue"   Text="{Binding Value}"       AbsoluteLayout.LayoutBounds="0,0,1,.5" AbsoluteLayout.LayoutFlags="All"/>
+                        <Label BackgroundColor="Green"  Text="{Binding Description}" AbsoluteLayout.LayoutBounds=".5,1,1,.5" AbsoluteLayout.LayoutFlags="All"/>
+                    </AbsoluteLayout>
+                </DataTemplate>
+            </forms:CarouselView.ItemTemplate>
+        </forms:CarouselView>
+       
+    </StackLayout>
+    
+</ContentPage>

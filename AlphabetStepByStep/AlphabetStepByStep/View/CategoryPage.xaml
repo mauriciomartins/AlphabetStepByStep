@@ -2,10 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:AlphabetStepByStep"
-             x:Class="AlphabetStepByStep.MainPage">
+             x:Class="AlphabetStepByStep.MainPage"
+             Title="Category List">
 
     <StackLayout>
         <Button  Text="Refresh" Command="{Binding LoadCategoryDirectoryCommand}" />
+        <ActivityIndicator IsRunning="{Binding IsBusy}"  IsVisible="{Binding IsBusy}"/>
         <ListView x:Name="CategoryList" ItemsSource="{Binding CategoryList}">
             <ListView.ItemTemplate >
                 <DataTemplate>

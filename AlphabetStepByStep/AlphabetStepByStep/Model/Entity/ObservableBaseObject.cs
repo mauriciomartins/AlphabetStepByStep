@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AlphabetStepByStep.Model.Entity
 {
-    class ObservableBaseObject : INotifyPropertyChanged
+    public class ObservableBaseObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate
         {};

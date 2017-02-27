@@ -29,16 +29,16 @@ namespace AlphabetStepByStep.model
         {
             this.ContentList = new ObservableCollection<Content>();
             this.IsBusy = false;
-            this.LoadContentDirectoryCommand = new Command((obj) => LoadDirectory());
+            this.LoadContentDirectoryCommand = new Command(() => LoadDirectory(),()=>!this.IsBusy);
         }
 
         private async void LoadDirectory()
         {
             if (!IsBusy)
             {
-                IsBusy = false;
+                IsBusy = true;
 
-                await Task.Delay(3000);
+               // await Task.Delay(3000);
                 var loadDirectory = ContentDirectoryService.LoadContentDirectory();
 
                 foreach (var content in loadDirectory.ContentList)
@@ -46,7 +46,7 @@ namespace AlphabetStepByStep.model
                     this.ContentList.Add(content);
                 }
 
-                IsBusy = true;
+                IsBusy = false;
             }
         }
     }
