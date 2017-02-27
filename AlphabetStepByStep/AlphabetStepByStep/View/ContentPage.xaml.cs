@@ -16,7 +16,9 @@ namespace AlphabetStepByStep.View
         public Content(Category selectedCategory)
         {
             InitializeComponent();
-            this.BindingContext =  new ContentDirectoryVM();
+            ContentDirectoryVM contentDirectoryVM = new ContentDirectoryVM();
+            this.BindingContext = contentDirectoryVM;
+            contentDirectoryVM.LoadDirectory();
         }
     }
 }

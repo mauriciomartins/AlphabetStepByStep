@@ -14,8 +14,10 @@ namespace AlphabetStepByStep
         public MainPage()
         {
             InitializeComponent();
-            this.BindingContext = new CategoryDirectoryVM();
+            CategoryDirectoryVM categoryDirectoryVM = new CategoryDirectoryVM();
+            this.BindingContext = categoryDirectoryVM;
             this.CategoryList.ItemSelected += CategoryList_ItemSelected;
+            categoryDirectoryVM.LoadDirectory();
         }
 
         private void CategoryList_ItemSelected(object sender, SelectedItemChangedEventArgs e)

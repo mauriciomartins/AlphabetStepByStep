@@ -32,7 +32,7 @@ namespace AlphabetStepByStep.model
             this.LoadContentDirectoryCommand = new Command(() => LoadDirectory(),()=>!this.IsBusy);
         }
 
-        private async void LoadDirectory()
+        public async void LoadDirectory()
         {
             if (!IsBusy)
             {

@@ -6,12 +6,11 @@
              Title="Category List">
 
     <StackLayout>
-        <Button  Text="Refresh" Command="{Binding LoadCategoryDirectoryCommand}" />
         <ActivityIndicator IsRunning="{Binding IsBusy}"  IsVisible="{Binding IsBusy}"/>
         <ListView x:Name="CategoryList" ItemsSource="{Binding CategoryList}">
             <ListView.ItemTemplate >
                 <DataTemplate>
-                    <ImageCell Text="{Binding Value}" Detail="{Binding Description}"/>
+                    <ImageCell Text="{Binding Value}" Detail="{Binding Description}"  TextColor="Blue" DetailColor="Navy"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
