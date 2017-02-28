@@ -17,7 +17,13 @@ namespace AlphabetStepByStep
             CategoryDirectoryVM categoryDirectoryVM = new CategoryDirectoryVM();
             this.BindingContext = categoryDirectoryVM;
             this.CategoryList.ItemSelected += CategoryList_ItemSelected;
+            this.AddCategory.Clicked += AddCategory_Clicked;
             categoryDirectoryVM.LoadDirectory();
+        }
+
+        private void AddCategory_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new View.CategoryInfoPage());
         }
 
         private void CategoryList_ItemSelected(object sender, SelectedItemChangedEventArgs e)

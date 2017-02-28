@@ -10,8 +10,9 @@ using Xamarin.Forms;
 
 namespace AlphabetStepByStep.model
 {
-    class CategoryDirectoryVM : ObservableBaseObject
+    class CategoryDetailDirectoryVM : ObservableBaseObject
     {
+        private Category categoryItem;
         public ObservableCollection<Category> CategoryList  { get; set; }
         private bool isBusy = false;
         public bool IsBusy
@@ -20,32 +21,37 @@ namespace AlphabetStepByStep.model
             set { this.isBusy = value; OnPropertyChanged(); }
         }
 
-        public Command LoadCategoryDirectoryCommand
+        public Category CategoryItem
+        {
+            get { return this.categoryItem; }
+            set { this.categoryItem = value; OnPropertyChanged(); }
+        }
+
+        public Command SaveCategoryDirectoryCommand
         {
             get;set;
         }
 
-        public CategoryDirectoryVM()
+        public CategoryDetailDirectoryVM()
         {
             this.CategoryList = new ObservableCollection<Category>();
             this.IsBusy = false;
-            this.LoadCategoryDirectoryCommand = new Command(()=> LoadDirectory(),()=>!this.IsBusy);
+            this.SaveCategoryDirectoryCommand = new Command(()=> SaveDirectory(),()=>!this.IsBusy);
+            this.categoryItem = new Category();
+            this.categoryItem.Value       = "TEste1";
+            this.categoryItem.Description = "TEste2";
         }
 
-        public async void LoadDirectory()
+        public  void SaveDirectory()
         {
             if (!IsBusy)
             {
                 IsBusy = true;
 
-                 await Task.Delay(3000);
-                var loadDirectory = CategoryDirectoryService.LoadCategoryDirectory();
-                this.CategoryList.Clear();
-                foreach (var category in loadDirectory.CategoryList)
-                {
-                    this.CategoryList.Add(category);
-                }
+                Task.Delay(3000);
 
+                CategoryDirectoryService.saveCategory(categoryItem);
+               
                 IsBusy = false;
             }
         }

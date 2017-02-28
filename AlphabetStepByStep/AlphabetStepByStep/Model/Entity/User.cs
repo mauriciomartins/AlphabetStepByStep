@@ -1,4 +1,5 @@
 ﻿using AlphabetStepByStep.Model.Entity;
+using AlphabetStepByStep.Model.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AlphabetStepByStep.model
 {
-    class User : ObservableBaseObject
+    class User : ObservableBaseObject, IKeyObject
     {
         private string name;
         private string email;
@@ -33,6 +34,12 @@ namespace AlphabetStepByStep.model
         {
             get { return birthDate; }
             set { birthDate = value; OnPropertyChanged(); }
+        }
+
+        public string Key
+        {
+            get;
+            set;
         }
     }
 }

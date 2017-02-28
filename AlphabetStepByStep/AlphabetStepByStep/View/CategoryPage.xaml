@@ -4,6 +4,9 @@
              xmlns:local="clr-namespace:AlphabetStepByStep"
              x:Class="AlphabetStepByStep.MainPage"
              Title="Category List">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Update" Command="{Binding LoadCategoryDirectoryCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <AbsoluteLayout    Padding="10"  AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
             <ListView x:Name="CategoryList" ItemsSource="{Binding CategoryList}" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
@@ -13,7 +16,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="+"  BorderRadius="20" FontSize="Large" BackgroundColor="Green" TextColor="White" AbsoluteLayout.LayoutBounds="1,1,60,60" AbsoluteLayout.LayoutFlags="PositionProportional" />
+            <Button Text="+" x:Name="AddCategory" BorderRadius="20" FontSize="Large" BackgroundColor="Green" TextColor="White" AbsoluteLayout.LayoutBounds="1,1,60,60" AbsoluteLayout.LayoutFlags="PositionProportional" />
             <ActivityIndicator IsRunning="{Binding IsBusy}"  IsVisible="{Binding IsBusy}" AbsoluteLayout.LayoutBounds=".5, .5,60,60" AbsoluteLayout.LayoutFlags="PositionProportional"/>
         </AbsoluteLayout>
     </ContentPage.Content>
