@@ -1,6 +1,10 @@
-﻿using Microsoft.WindowsAzure.MobileServices;
+﻿using AlphabetStepByStep.model;
+using Microsoft.WindowsAzure.MobileServices;
+using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
+using Microsoft.WindowsAzure.MobileServices.Sync;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,17 +14,42 @@ namespace AlphabetStepByStep.Model.Service
     public class AzureService<T>
     {
         IMobileServiceClient Client;
-        IMobileServiceTable<T> Table;
-
+        IMobileServiceSyncTable<T> Table;
+        const string dbPath = "AlphabetStepByStepDB";
+        const string MyAppServiceURL = "http://alphabetstepbystep.azurewebsites.net";
         public AzureService()
         {
-            string MyAppServiceURL = "http://alphabetstepbystep.azurewebsites.net";
             Client = new MobileServiceClient(MyAppServiceURL);
-            Table = Client.GetTable<T>();
+            var store = new MobileServiceSQLiteStore(dbPath);
+            store.DefineTable<Category>();
+            Client.SyncContext.InitializeAsync(store);
+            Table = Client.GetSyncTable<T>();
         }
+        public async Task SyncAsync()
+        {
+            ReadOnlyCollection<MobileServiceTableOperationError> errors = null;
+            try
+            {
+                await Client.SyncContext.PushAsync();
+                await Table.PullAsync("GetAllCategories",Table.CreateQuery());
+            }
+            catch (MobileServicePushFailedException pushError)
+            {
+                if (pushError.PushResult != null)
+                {
+                    errors = pushError.PushResult.Errors;
+                }
+            }
+        }
+
+
         public Task<IEnumerable<T>> GetTable()
         {
             return Table.ToEnumerableAsync();
         }
+        public async Task CleanData()
+        {
+            await Table.PurgeAsync("GetAllCategories", Table.CreateQuery(), new System.Threading.CancellationToken());
+        }
     }
 }

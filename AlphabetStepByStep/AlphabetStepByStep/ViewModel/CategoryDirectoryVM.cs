@@ -20,6 +20,11 @@ namespace AlphabetStepByStep.model
             set { this.isBusy = value; OnPropertyChanged(); }
         }
 
+        public Command CleanDataCommand
+        {
+            get; set;
+        }
+
         public Command LoadCategoryDirectoryCommand
         {
             get;set;
@@ -30,6 +35,28 @@ namespace AlphabetStepByStep.model
             this.CategoryList = new ObservableCollection<Category>();
             this.IsBusy = false;
             this.LoadCategoryDirectoryCommand = new Command(()=> LoadDirectory(),()=>!this.IsBusy);
+            this.CleanDataCommand             = new Command(() => CleanData(), () => !this.IsBusy);
+        }
+
+        private async void CleanData()
+        {
+            if (!IsBusy)
+            {
+                try
+                {
+                    IsBusy = true;
+                    await CategoryDirectoryService.CleanData();
+                }
+                catch (Exception e)
+                {
+                    await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Error!", e.Message, "OK");
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
+            }
+
         }
 
         public async void LoadDirectory()

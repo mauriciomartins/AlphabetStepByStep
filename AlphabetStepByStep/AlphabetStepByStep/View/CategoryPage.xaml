@@ -6,6 +6,7 @@
              Title="Category List">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Update" Command="{Binding LoadCategoryDirectoryCommand}"/>
+        <ToolbarItem Text="Clean" Command="{Binding CleanDataCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <AbsoluteLayout    Padding="10"  AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">

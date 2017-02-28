@@ -14,10 +14,19 @@ namespace AlphabetStepByStep.Model.Service
         public async static Task<List<Category>> GetCategories()
         {
                 var Service = new AzureService<Category>();
-                var Items = await Service.GetTable();
-                return Items.ToList();
+            if (Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
+            {
+                await Service.SyncAsync();
+            }
+            var Items = await Service.GetTable();
+            return Items.ToList();
         }
 
+        public async static Task CleanData()
+        {
+            var Service = new AzureService<Category>();
+            await Service.CleanData();
+        }
 
         public async static Task<List<Category>> GetCats()
         {
