@@ -36,17 +36,35 @@ namespace AlphabetStepByStep.model
         {
             if (!IsBusy)
             {
-                IsBusy = true;
+                
 
-                 await Task.Delay(3000);
+                /*
+                await Task.Delay(3000);
                 var loadDirectory = CategoryDirectoryService.LoadCategoryDirectory();
-                this.CategoryList.Clear();
+                
                 foreach (var category in loadDirectory.CategoryList)
                 {
                     this.CategoryList.Add(category);
                 }
-
-                IsBusy = false;
+                */
+                try
+                {
+                    IsBusy = true;
+                    this.CategoryList.Clear();
+                    var categories =  await CategoryDirectoryService.GetCats();
+                    foreach (var category in categories)
+                    {
+                        this.CategoryList.Add(category);
+                    }
+                }
+                catch (Exception e)
+                {
+                    await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Error!", e.Message, "OK");
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
             }
         }
     }

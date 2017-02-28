@@ -12,7 +12,7 @@
             <ListView x:Name="CategoryList" ItemsSource="{Binding CategoryList}" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
                 <ListView.ItemTemplate  >
                     <DataTemplate>
-                        <ImageCell Text="{Binding Value}" Detail="{Binding Description}"  TextColor="Blue" DetailColor="Navy"/>
+                        <ImageCell ImageSource="{Binding Image}" Text="{Binding Value}" Detail="{Binding Description}"  TextColor="Blue" DetailColor="Navy"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

@@ -1,14 +1,28 @@
 ﻿using AlphabetStepByStep.model;
 using AlphabetStepByStep.Model.Storage;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace AlphabetStepByStep.Model.Service
 {
     class CategoryDirectoryService
     {
-         
+
+        public async static Task<List<Category>> GetCats()
+        {
+            List<Category> Cats;
+            var URLWebAPI = "http://demos.ticapacitacion.com/cats";
+            using (var Client = new System.Net.Http.HttpClient())
+            {
+                var JSON = await Client.GetStringAsync(URLWebAPI);
+                Cats = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Category>>(JSON);
+            }
+            return Cats;
+        }
+
         public static  CategoryDirectory LoadCategoryDirectory()
         {
             DatabaseManager dbManager = new DatabaseManager();

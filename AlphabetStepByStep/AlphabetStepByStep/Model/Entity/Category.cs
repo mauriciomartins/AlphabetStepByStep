@@ -12,6 +12,13 @@ namespace AlphabetStepByStep.model
     {
         private string value;
         private string description;
+        private string image;
+
+        public string Image
+        {
+            get { return this.image; }
+            set { this.image = value; OnPropertyChanged(); }
+        }
         public string Value
         {
             get { return this.value; }
