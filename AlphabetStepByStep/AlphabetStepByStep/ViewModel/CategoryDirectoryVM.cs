@@ -51,7 +51,7 @@ namespace AlphabetStepByStep.model
                 {
                     IsBusy = true;
                     this.CategoryList.Clear();
-                    var categories =  await CategoryDirectoryService.GetCats();
+                    var categories =  await CategoryDirectoryService.GetCategories();
                     foreach (var category in categories)
                     {
                         this.CategoryList.Add(category);

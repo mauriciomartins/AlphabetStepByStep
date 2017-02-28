@@ -11,17 +11,26 @@ namespace AlphabetStepByStep.Model.Service
     class CategoryDirectoryService
     {
 
+        public async static Task<List<Category>> GetCategories()
+        {
+                var Service = new AzureService<Category>();
+                var Items = await Service.GetTable();
+                return Items.ToList();
+        }
+
+
         public async static Task<List<Category>> GetCats()
         {
-            List<Category> Cats;
+            List<Category> Categories;
             var URLWebAPI = "http://demos.ticapacitacion.com/cats";
             using (var Client = new System.Net.Http.HttpClient())
             {
                 var JSON = await Client.GetStringAsync(URLWebAPI);
-                Cats = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Category>>(JSON);
+                Categories = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Category>>(JSON);
             }
-            return Cats;
-        }
+            return Categories;
+        }
+
 
         public static  CategoryDirectory LoadCategoryDirectory()
         {
